@@ -376,6 +376,11 @@ a {
 
 
 
+.mobile-menu { /*sur PC, le menu déroulant ne s'affiche PAS (voir ci-dessous pour les réglages pr petits écrans*/
+  display: none;
+}
+
+
 /* pour petits écrans */
 @media screen and (max-width: 1150px) {
 

@@ -380,6 +380,29 @@ a {
   display: none;
 }
 
+#scrollToTopBtn { /* pour bouton "retour vers haut de la page" sur mobile */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #d42632; /* rouge accent */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #d42632;
+    display: none; /* caché par défaut */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #7ebded; /* bleu accent au hover */
+}
 
 /* pour petits écrans */
 @media screen and (max-width: 1150px) {
@@ -392,12 +415,12 @@ a {
 
     .collapsible {
 
-        width: 300px; /* largeur*/
+        width: 400px; /* largeur*/
         margin: 0 auto;
     }
 
     .scroll-box {
-        width: 300px;        /* largeur fixe */
+        width: 400px;        /* largeur fixe */
         height: 200px;       /* hauteur fixe */
         margin: 0 auto;
     }
@@ -445,5 +468,9 @@ a {
 	.mobile-menu li {
 		margin: 0.5rem 0;
 	}
+
+    #scrollToTopBtn {
+        display: flex;
+    }
 }
 

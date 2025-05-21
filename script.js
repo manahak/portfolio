@@ -138,7 +138,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-
+// pour prévisualisation d'images
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-img");
 const closeBtn = document.querySelector(".close");
@@ -186,6 +186,11 @@ prevBtn.addEventListener("click", (e) => {
 nextBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     showNext();
+});
+
+// scroll smooth au clic (bouton "retour haut de la page" sur mobile)
+document.getElementById('scrollToTopBtn').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 

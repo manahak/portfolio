@@ -28,6 +28,15 @@ section h2 {
 	color: #eb2e3b;
 }
 
+.centered-h2 {
+	width: calc(100vw - 300px); /* 300px = largeur du carousel */
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+
 @font-face {
 	font-family: 'NotoSans';
 	src: url('./fonts/NotoSans-Regular.ttf') format('truetype');
@@ -84,9 +93,9 @@ section {
   padding: 1rem;
   width: 900px; /* largeur*/
   /* margin: 0 auto; */
-  margin-left: 0px;
+  margin-left: calc((100vw - 380px - 900px) / 2);
   border: 2px solid #7ebded;
-  border-radius: 8px;
+  border-radius: 25px;
   text-align: center;
 }
 
@@ -124,9 +133,9 @@ section {
 	padding: 1rem;
 	border: 2px solid #7edeed;
 	background-color: rgba(255, 255, 255, 0.05); /* légère transparence */
-	border-radius: 8px;
+	border-radius: 10px;
 
-    margin-left: 0px;
+    margin-left: calc((100vw - 380px - 900px) / 2);
 }
 
 .scroll-box::-webkit-scrollbar {
@@ -135,7 +144,7 @@ section {
 
 .scroll-box::-webkit-scrollbar-thumb {
 	background-color: #7ebded;
-	border-radius: 10px;
+	border-radius: 25px;
 }
 
 .scroll-box::-webkit-scrollbar-track {
@@ -191,7 +200,7 @@ section {
 	height: 100%;
 	overflow: hidden;
 	border-radius: 10px;
-	background-color: rgba(28, 19, 38, 0.6);
+	background-color: #1e1a30;
 }
 
 .carousel-track {
@@ -434,6 +443,67 @@ a {
 }
 
 
+.image-box-4 { /*pour les boites contenant 4 images*/
+	background-color: #1c1326;
+	border: 2px solid #7ebded;
+	border-radius: 25px;
+	padding: 1rem;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	width: 900px;
+	/* centré comme tes menus déroulants, ajuste margin si besoin */
+	margin-left: calc((100vw - 380px - 900px) / 2);
+}
+
+.image-box-4 img {
+	width: 20%; /* 4 images sur une ligne */
+	max-width: 180px;
+	border: 2px solid #fff;
+	border-radius: 6px;
+	transition: transform 0.3s ease;
+	cursor: pointer;
+}
+
+.image-box-4 img:hover {
+	transform: scale(1.05);
+	border-color: #d42632;
+}
+
+.image-box-3 { /*boite pour 3 images*/
+	background-color: #1c1326;
+	border: 2px solid #7ebded;
+	border-radius: 25px;
+	padding: 1rem;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	width: 900px;
+	margin-left: calc((100vw - 380px - 900px) / 2);
+}
+
+.image-box-3 img {
+	width: 28%; /* un peu plus large pour 3 images */
+	max-width: 240px;
+	border: 2px solid #fff;
+	border-radius: 6px;
+	transition: transform 0.3s ease;
+	cursor: pointer;
+}
+
+.image-box-3 img:hover {
+	transform: scale(1.05);
+	border-color: #d42632;
+}
+
+
+
 /* pour petits écrans */
 @media screen and (max-width: 1150px) {
 
@@ -502,5 +572,13 @@ a {
     #scrollToTopBtn {
         display: flex;
     }
+
+    .image-box-4 { /*pour les boites contenant 4 images*/
+	width: 400px;
+    }
+
+    .image-box-3 { /*boite pour 3 images*/
+	width: 400px;
+}
 }
 

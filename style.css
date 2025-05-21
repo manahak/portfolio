@@ -327,6 +327,23 @@ a {
 	max-height: 80vh;
 	border: 2px solid #fff;
 	box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+
+    cursor: grab; /* Indique que ça peut être déplacé */
+    user-select: none;
+
+    cursor: zoom-in; /*change curseur en version zoom/loupe */
+}
+
+/* en zoom actif, on change le curseur en main grab */
+.modal-content.zoomed {
+    transform-origin: center center;
+    cursor: grabbing;
+}
+
+/* Quand on clique et qu'on déplace */
+.modal-content.zoomed.dragging {
+    cursor: grabbing;
 }
 
 .close {
@@ -403,6 +420,19 @@ a {
 #scrollToTopBtn:hover {
     background-color: #7ebded; /* bleu accent au hover */
 }
+
+/* pour le CV. pour que les liens soient à côté de l'image et non au dessus */
+.cv-content {
+  display: flex;
+  align-items: center; /* aligne verticalement au milieu */
+  gap: 20px; /* espace entre liens et image */
+}
+
+.cv-links {
+  display: flex;
+  flex-direction: column; /* empile les liens verticalement */
+}
+
 
 /* pour petits écrans */
 @media screen and (max-width: 1150px) {

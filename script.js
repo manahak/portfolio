@@ -188,6 +188,50 @@ nextBtn.addEventListener("click", (e) => {
     showNext();
 });
 
+//gérer zoom + drag (clic-glissé pour déplacer l’image zoomée)
+
+let isZoomed = false;
+let isDragging = false;
+let startX, startY, currentX = 0, currentY = 0;
+
+modalImg.style.transform = "translate(0px, 0px) scale(1)";
+
+modalImg.addEventListener('click', () => {
+	if (!isZoomed) {
+		isZoomed = true;
+		modalImg.classList.add('zoomed');
+		modalImg.style.transform = `translate(0px, 0px) scale(2)`; // zoom 2x
+	} else {
+		isZoomed = false;
+		isDragging = false;
+		modalImg.classList.remove('zoomed', 'dragging');
+		modalImg.style.transform = `translate(0px, 0px) scale(1)`;
+		currentX = 0;
+		currentY = 0;
+	}
+});
+
+modalImg.addEventListener('mousedown', (e) => {
+	if (!isZoomed) return;
+	isDragging = true;
+	startX = e.clientX - currentX;
+	startY = e.clientY - currentY;
+	modalImg.classList.add('dragging');
+});
+
+window.addEventListener('mouseup', () => {
+	if (!isDragging) return;
+	isDragging = false;
+	modalImg.classList.remove('dragging');
+});
+
+window.addEventListener('mousemove', (e) => {
+	if (!isDragging) return;
+	currentX = e.clientX - startX;
+	currentY = e.clientY - startY;
+	modalImg.style.transform = `translate(${currentX}px, ${currentY}px) scale(2)`;
+});/////////////////
+
 // scroll smooth au clic (bouton "retour haut de la page" sur mobile)
 document.getElementById('scrollToTopBtn').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

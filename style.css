@@ -29,7 +29,7 @@ section h2 {
 }
 
 .centered-h2 {
-	width: calc(100vw - 300px); /* 300px = largeur du carousel */
+	width: calc(100vw - 380px); /* 300px = largeur du carousel */
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -57,6 +57,16 @@ img {
   max-width: 100%;/*les images ne dépassent pas leur conteneur */
   height: auto;
 }
+
+#carte iframe { /*pour les google maps*/
+	border: 2px solid #7ebded;
+	border-radius: 15px;
+	display: block;
+	margin: 0 auto;
+	width:500px;
+	height:200px;
+}
+
 
 
 .desktop-menu {
@@ -502,6 +512,34 @@ a {
 	border-color: #d42632;
 }
 
+/* écran chargement/loader */
+#loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #0f0c1c;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+/* roue chargement qui tourne */
+.spinner {
+	border: 8px solid #7ebded;
+	border-top: 8px solid #d42632;
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
 
 
 /* pour petits écrans */
@@ -512,6 +550,11 @@ a {
         margin-left: 0px;
         padding: 1rem;
     }
+
+	#carte iframe { /*pour les google maps*/
+	width:350px;
+	height:200px;
+}
 
     .collapsible {
 
@@ -575,10 +618,12 @@ a {
 
     .image-box-4 { /*pour les boites contenant 4 images*/
 	width: 400px;
+	margin: 0 auto;
     }
 
     .image-box-3 { /*boite pour 3 images*/
 	width: 400px;
+	margin: 0 auto;
 }
 }
 

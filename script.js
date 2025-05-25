@@ -247,30 +247,4 @@ window.addEventListener("load", () => {
   }, 500);
 });
 
-///// overlay flouté à la première visite
-	document.addEventListener("DOMContentLoaded", function () {
-		const overlay = document.getElementById("first-visit-overlay");
-
-		// Ne montre l'overlay que si c'est la première visite de la session
-		if (!sessionStorage.getItem("visited")) {
-			overlay.style.pointerEvents = "auto"; // Pour permettre interaction
-			sessionStorage.setItem("visited", "true");
-
-			// Supprimer le flou quand l'utilisateur scroll
-			window.addEventListener("scroll", () => {
-				overlay.classList.add("hidden");
-				setTimeout(() => overlay.remove(), 1000);
-			});
-
-			// Ou clique pour désactiver
-			overlay.addEventListener("click", () => {
-				overlay.classList.add("hidden");
-				setTimeout(() => overlay.remove(), 1000);
-			});
-		} else {
-			overlay.remove();
-		}
-	});
-
-
 

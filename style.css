@@ -806,6 +806,25 @@ a {
   box-shadow: 0 0 10px #eb2e3b;
 }
 
+/* Animation fade-in avec décalage progressif */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Classe de base à appliquer aux éléments */
+.fade-in {
+	opacity: 0;
+	animation: fadeInUp 1s ease forwards;
+}
+
+
 
 /* pour petits écrans */
 @media screen and (max-width: 1150px) {

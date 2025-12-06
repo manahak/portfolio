@@ -228,6 +228,111 @@ section {
 	margin-bottom: 100px;
 }
 
+/* Container pour les deux timelines côte à côte */
+.timeline-container {
+	display: flex;
+	gap: 3rem;
+	max-width: 1400px;
+	margin: 2rem auto;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.timeline-wrapper {
+	flex: 1;
+	max-width: 600px;
+}
+
+.timeline-title {
+	text-align: center;
+	color: #7ebded;
+	font-size: 1.8rem;
+	margin-bottom: 2rem;
+	text-shadow: 0 0 10px rgba(126, 222, 237, 0.5);
+}
+
+/* Timeline verticale */
+.timeline {
+	position: relative;
+	margin: 0 auto;
+	padding: 2rem 0;
+}
+
+/* Ligne verticale centrale */
+.timeline::before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	background: linear-gradient(180deg, #7ebded, #5aa7d6);
+	border-radius: 2px;
+}
+
+.timeline-item {
+	position: relative;
+	margin-bottom: 3rem;
+	display: flex;
+	align-items: center;
+}
+
+/* Point sur la timeline */
+.timeline-dot {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 20px;
+	height: 20px;
+	background-color: #eb2e3b;
+	border: 4px solid #1c192e;
+	border-radius: 50%;
+	z-index: 1;
+	box-shadow: 0 0 15px rgba(235, 46, 59, 0.6);
+}
+
+/* Contenu alterné gauche/droite */
+.timeline-content {
+	background-color: #1c192e;
+	padding: 1.5rem;
+	border-radius: 15px;
+	border: 2px solid rgba(126, 222, 237, 0.3);
+	width: 45%;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Premier item à droite */
+.timeline-item:nth-child(odd) .timeline-content {
+	margin-left: auto;
+}
+
+/* Deuxième item à gauche */
+.timeline-item:nth-child(even) .timeline-content {
+	margin-right: auto;
+}
+
+.timeline-content h3 {
+	color: #7ebded;
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	font-size: 1.5rem;
+}
+
+.timeline-date {
+	color: #eb2e3b;
+	font-weight: bold;
+	font-size: 1rem;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+	margin: 0;
+	line-height: 1.6;
+	font-size: 1.1rem;
+}
+
 .collapsible {
   background-color: #1c1326;
   color: white;
@@ -915,6 +1020,15 @@ a {
         padding: 1rem;
     }
 	
+	header {
+		/* Centré et presque toute la largeur sur mobile */
+		width: 90%;
+		max-width: none;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 10px;
+	}
+	
 	.p1 {
 	text-align: justify;
 	width: 70%;
@@ -958,6 +1072,7 @@ a {
 	main {
 		margin-right: 0;
 		padding: 1rem;
+		padding-top: 120px; /* Espace pour le header flottant sur mobile */
 	}
 
 	header, footer {
@@ -989,6 +1104,32 @@ a {
     #scrollToTopBtn {
         display: flex;
     }
+	
+	/* Timeline responsive mobile - empile verticalement */
+	.timeline-container {
+		flex-direction: column;
+		gap: 2rem;
+	}
+	
+	.timeline-wrapper {
+		max-width: 100%;
+	}
+	
+	.timeline::before {
+		left: 20px;
+		transform: none;
+	}
+	
+	.timeline-dot {
+		left: 20px;
+		transform: translateX(-50%);
+	}
+	
+	.timeline-content {
+		width: calc(100% - 60px);
+		margin-left: 50px !important;
+		margin-right: 0 !important;
+	}
 
     .image-box-4 { /*pour les boites contenant 4 images*/
 	width: 400px;

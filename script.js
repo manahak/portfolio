@@ -411,6 +411,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Applique l'effet au "Bonjour" dans la section accueil
   const greet = document.querySelector('.p1 #randomletter');
   if (greet) randomLetters(greet, 700, 60);
+  
+  // ===== Clic sur header pour retourner en haut =====
+  if (headerTitle) {
+    headerTitle.style.cursor = 'pointer';
+    headerTitle.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      currentIndex = 0;
+      updateCarousel();
+    });
+  }
 
   // ===== Étape 2 : Préparation des barres de progression =====
   const containers = document.querySelectorAll('.progress-circle');

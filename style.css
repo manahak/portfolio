@@ -24,13 +24,20 @@ h2, h3, h4, h5, h6, header, .carousel-button {
 header {
 	color: #7edeed;
 	background-color: #1c192e;
-    /* margin-left: 20px; */
-	/* text-align: center; */
 	padding: 1rem;
-	width: 100%;
 	position: fixed;
 	z-index: 2000;
 	transition: all 0.3s ease;
+	
+	/* Flottant avec bords arrondis, centré entre bord gauche et bord gauche du carousel */
+	width: 80%;
+	max-width: 800px;
+	top: 20px;
+	left: calc((100vw - 300px) / 2);
+	transform: translateX(-50%);
+	border-radius: 20px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+	border: 2px solid rgba(126, 222, 237, 0.3);
 }
 
 header.scrolled {
@@ -39,7 +46,7 @@ header.scrolled {
 
 header.scrolled h1 {
 	font-size: 1.5rem;
-	margin: 50;
+	margin: 0;
 	padding: 0.3rem 0;
 }
 
@@ -55,10 +62,14 @@ header h1 {
 	font-size: 2.5rem;
 	color: #ffffff;
 	font-family: 'Quantico', Arial, sans-serif;
-	margin-left: 20px;
-	margin-top: 0;
-	margin-bottom: 0;
+	margin: 0;
+	padding: 0;
 	transition: font-size 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 
 	text-shadow:
 		0 0 8px #26ced4,
@@ -210,6 +221,7 @@ table {
 main {
 	margin-right: 250px;
 	padding: 2rem;
+	padding-top: 140px; /* Espace pour le header flottant */
 }
 
 section {

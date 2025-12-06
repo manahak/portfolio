@@ -399,11 +399,11 @@ section {
 
 /* Images de fond par défaut pour chaque carte */
 .experience-card[data-experience="stage1"] {
-	background-image: url('exp/quiestce1.png'); /* Remplacez par l'image appropriée */
+	background-image: url('exp/agen.jpg'); /* Remplacez par l'image appropriée */
 }
 
 .experience-card[data-experience="stage2"] {
-	background-image: url('exp/quiestce2.png'); /* Remplacez par l'image appropriée */
+	background-image: url('exp/agen.jpg'); /* Remplacez par l'image appropriée */
 }
 
 .experience-card[data-experience="quiestce"] {
@@ -411,7 +411,7 @@ section {
 }
 
 .experience-card[data-experience="inventaire"] {
-	background-image: url('exp/capturepoo.png');
+	background-image: url('exp/chp_card.png');
 }
 
 /* Overlay semi-transparent par défaut */

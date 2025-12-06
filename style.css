@@ -781,7 +781,7 @@ a {
 .modal {
 	display: none;
 	position: fixed;
-	z-index: 999;
+	z-index: 12000; /* au-dessus du popup d'expérience */
 	left: 0;
 	top: 0;
 	width: 100%;

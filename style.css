@@ -26,9 +26,21 @@ header {
 	background-color: #1c192e;
     /* margin-left: 20px; */
 	/* text-align: center; */
-	/*padding: 1rem;*/
+	padding: 1rem;
 	width: 100%;
 	position: fixed;
+	z-index: 2000;
+	transition: all 0.3s ease;
+}
+
+header.scrolled {
+	padding: 0.5rem 0;
+}
+
+header.scrolled h1 {
+	font-size: 1.5rem;
+	margin: 50;
+	padding: 0.3rem 0;
 }
 
 footer {
@@ -44,6 +56,9 @@ header h1 {
 	color: #ffffff;
 	font-family: 'Quantico', Arial, sans-serif;
 	margin-left: 20px;
+	margin-top: 0;
+	margin-bottom: 0;
+	transition: font-size 0.3s ease, margin 0.3s ease, padding 0.3s ease;
 
 	text-shadow:
 		0 0 8px #26ced4,
@@ -134,7 +149,9 @@ table {
             /*border: 2px solid #7ebded*/;
 			background-color: #1c192e;
 			padding: 20px;
-			border-radius: 10px;
+					border-radius: 10px;
+					overflow: hidden; /* empêche les éléments internes de dépasser */
+					box-sizing: border-box;
         }
 
         table#table1 {
@@ -749,12 +766,13 @@ a {
 }
 
 .cmpts p {
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2px;
-  width: 200px;
-  position : relative;
+	display: flex; 
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2px;
+	max-width: 200px;
+	width: 100%;
+	position : relative;
   /*text-shadow:
 		0 0 8px #26ced4,
 		0 0 12px #26b1d4,
@@ -768,34 +786,84 @@ a {
 }
 
 .progress-circle {
-  position: relative;
-  width: 280px;
-  height: 280px;
-  border-radius: 10%;
-  background: conic-gradient(#0ff 0% 0%, #000 0% 100%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: filter 0.1s;
-  margin: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	width: min(240px, 34vw);
+	max-width: 260px;
+	margin: 12px auto;
+	padding: 10px 8px;
+	box-sizing: border-box;
 }
 
-.progress-circle::before {
-  content: "";
-  position: absolute;
-  width: 230px;
-  height: 230px;
-  background: #1c192e; /* couleur du fond vide au centre */
-  border-radius: 10%;
+/* track and fill for horizontal progress */
+.progress-track {
+	width: 100%;
+	background: rgba(255,255,255,0.03);
+	height: 14px;
+	border-radius: 999px;
+	overflow: hidden;
+	box-shadow: inset 0 0 0 1px rgba(126,189,237,0.04);
 }
 
-.progress-circle .number {
-  position: absolute;
-  top : 55px;
-  font-size: 20px;
-  color: #ffffff;
-  /*text-shadow: 0 0 6px #7edeed;*/
-  z-index: 1;
+.progress-fill {
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(90deg, #7ebded, #5aa7d6);
+	border-radius: 999px;
+	transition: width 800ms cubic-bezier(.2,.8,.2,1);
+}
+
+.progress-percent {
+	font-size: 0.95rem;
+	color: #ffffff;
+	margin-top: 4px;
+}
+
+/* Responsive adjustments: make progress circles fit their container
+	 and stack the 3 columns on narrow screens (mobile) */
+@media (max-width: 800px) {
+	/* make the main content use full width (considering the fixed carousel) */
+	.centered-h2, .p1, .article-box, .image-box-3, .image-box-4, .image-box-5 {
+		width: calc(100vw - 340px);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* table layout -> stacked blocks on mobile */
+	table#table1 {
+		width: 100%;
+		table-layout: auto;
+	}
+
+	table#table1, table#table1 tr {
+		display: block;
+		width: 100%;
+	}
+
+	table#table1 th {
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+		margin: 0 0 1rem 0;
+		padding: 12px;
+	}
+
+	/* be sure the progress circles shrink on small screens */
+	.progress-circle {
+		width: min(200px, 60vw);
+		margin: 12px auto;
+	}
+
+	.progress-track { height: 12px; }
+
+	.progress-percent { font-size: 0.9rem; }
+
+	.cmpts p {
+		max-width: 100%;
+		width: 100%;
+	}
 }
 
 .progress-circle:hover {
@@ -1006,4 +1074,25 @@ a {
     to {
         opacity: 0.5;
     }
+}
+
+/* Breakpoint intermédiaire: écrans moyens (tablettes larges / petits laptops)
+	 Réduit la largeur des cercles et change légèrement le ratio pour
+	 qu'ils paraissent plus rectangulaires sans empiler les colonnes. */
+@media (min-width: 801px) and (max-width: 1200px) {
+	.progress-circle {
+		width: min(220px, 30vw);
+		margin: 14px auto;
+	}
+
+	.progress-track { height: 12px; }
+
+	/* assure que la table garde 3 colonnes mais que les contenus n'excèdent pas */
+	table#table1 {
+		width: 90%;
+	}
+
+	table#table1 th {
+		padding: 14px;
+	}
 }

@@ -227,6 +227,22 @@ document.getElementById('scrollToTopBtn').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// header shrink on scroll
+const headerElement = document.querySelector('header');
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (currentScroll > 50) {
+    headerElement.classList.add('scrolled');
+  } else {
+    headerElement.classList.remove('scrolled');
+  }
+  
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
+
 ///// écran de chargement
 
 window.addEventListener("load", () => {
@@ -238,25 +254,89 @@ window.addEventListener("load", () => {
 });
 
 //// barre de progression
+
 document.addEventListener('DOMContentLoaded', () => {
-			  const circles = document.querySelectorAll('.progress-circle');
+  const containers = document.querySelectorAll('.progress-circle');
 
-			  circles.forEach(circle => {
-				const percent = parseInt(circle.getAttribute('data-percent'));
-				const number = circle.querySelector('.number');
-				let current = 0;
+  // prepare elements but do not animate yet
+  containers.forEach(container => {
+    const percent = Math.max(0, Math.min(100, parseInt(container.getAttribute('data-percent')) || 0));
+    container.dataset.targetPercent = percent;
 
-				const interval = setInterval(() => {
-				  if (current >= percent) {
-					clearInterval(interval);
-				  } else {
-					current++;
-					circle.style.background = `conic-gradient(#7ebded 0% ${current}%, #2f2d3d ${current}% 100%)`;
-					number.textContent = `${current}%`;
-				  }
-				}, 5);
-			  });
-			});
+    // create track and fill
+    const track = document.createElement('div');
+    track.className = 'progress-track';
+    const fill = document.createElement('div');
+    fill.className = 'progress-fill';
+    fill.style.width = '0%';
+    track.appendChild(fill);
+
+    // percent label
+    const label = document.createElement('div');
+    label.className = 'progress-percent';
+    label.textContent = '0%';
+
+    // append elements (keep existing child content above the bar)
+    container.appendChild(track);
+    container.appendChild(label);
+  });
+
+  // animation function using requestAnimationFrame
+  function animateFill(container) {
+    if (container.dataset.animated === 'true') return;
+    const target = parseInt(container.dataset.targetPercent || '0', 10);
+    const fill = container.querySelector('.progress-fill');
+    const label = container.querySelector('.progress-percent');
+    if (!fill || !label) return;
+
+    const duration = 800;
+    const start = performance.now();
+
+    function frame(now) {
+      const elapsed = now - start;
+      const progress = Math.min(1, elapsed / duration);
+      const value = Math.round(progress * target);
+      fill.style.width = value + '%';
+      label.textContent = value + '%';
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        container.dataset.animated = 'true';
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  // Use IntersectionObserver to trigger when '#competences' is visible
+  const section = document.getElementById('competences');
+  if (section && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
+          containers.forEach(c => animateFill(c));
+          observer.disconnect();
+        }
+      });
+    }, { threshold: [0.2] });
+    obs.observe(section);
+  } else {
+    // Fallback: animate on scroll when section top comes into view
+    function onScrollCheck() {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8) {
+        containers.forEach(c => animateFill(c));
+        window.removeEventListener('scroll', onScrollCheck);
+      }
+    }
+    window.addEventListener('scroll', onScrollCheck);
+    // also check immediately in case already visible
+    if (section && section.getBoundingClientRect().top < window.innerHeight * 0.8) {
+      containers.forEach(c => animateFill(c));
+      window.removeEventListener('scroll', onScrollCheck);
+    }
+  }
+});
 
 /// map
 			var map = L.map('map').setView([44.20000, 0.63333], 13);

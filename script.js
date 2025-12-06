@@ -600,8 +600,9 @@ function CalculDistance(){
  * Crée un effet d'animation où le texte de l'élément se transforme
  * en lettres/chiffres aléatoires pendant une courte durée, puis revient au texte original.
  * 
- * ✨ SPÉCIAL : Si l'élément contient des <img>, elles sont préservées intactes.
- *             Seul le texte (nœuds texte) est animé.
+ * ✨ SPÉCIAL : Effet TYPEWRITER - Les caractères s'affichent progressivement
+ *             pendant que l'animation aléatoire est active.
+ *             Si l'élément contient des <img>, elles sont préservées intactes.
  * 
  * PARAMÈTRES :
  * - element : l'élément DOM contenant le texte à animer (ex: document.querySelector('header h1'))
@@ -640,7 +641,7 @@ function randomLetters(element, duration = 1000, speed = 40) {
   duration = Math.max(10, duration);
   speed = Math.max(1, speed);
   
-  const letters = "abcdefghijklmnopqrstuvwxyz0123456789#!?_";
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#!?";
   let interval;
   let startTime = performance.now();
   let frameCount = 0;
@@ -650,10 +651,28 @@ function randomLetters(element, duration = 1000, speed = 40) {
     const elapsed = performance.now() - startTime;
     frameCount++;
     
+    // Calcule la progression (0 à 1)
+    const progress = Math.min(1, elapsed / duration);
+    
+    // Calcule le nombre de caractères à afficher (effet typewriter)
+    const charsToShow = Math.floor(progress * finalText.length);
+    
     let randomText = "";
-    // Pour chaque caractère du texte original, choisit une lettre aléatoire
+    // Génère du texte aléatoire pour TOUS les caractères
     for (let i = 0; i < finalText.length; i++) {
       randomText += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+    
+    // Mélange : affiche les caractères aléatoires jusqu'à charsToShow, puis des espaces/caractères vides
+    let displayText = "";
+    for (let i = 0; i < finalText.length; i++) {
+      if (i < charsToShow) {
+        // Affiche le caractère aléatoire
+        displayText += randomText[i];
+      } else {
+        // Affiche un espace (caractère invisible) pour les caractères pas encore affichés
+        displayText += " ";
+      }
     }
     
     // Reconstruit le contenu en remplaçant seulement le texte
@@ -662,12 +681,12 @@ function randomLetters(element, duration = 1000, speed = 40) {
     const originalClone = document.createElement('div');
     originalClone.innerHTML = originalHTML;
     
-    // Recréé l'arborescence en remplaçant le texte par du texte aléatoire
+    // Recréé l'arborescence en remplaçant le texte par du texte avec typewriter
     originalClone.childNodes.forEach(node => {
       if (node.nodeType === 3) { // Nœud texte
         const length = node.textContent.trim().length;
-        const randomPart = randomText.substring(textIndex, textIndex + length);
-        element.appendChild(document.createTextNode(randomPart));
+        const displayPart = displayText.substring(textIndex, textIndex + length);
+        element.appendChild(document.createTextNode(displayPart));
         textIndex += length;
       } else {
         // Copie les éléments (comme les images)
@@ -675,7 +694,7 @@ function randomLetters(element, duration = 1000, speed = 40) {
       }
     });
     
-    // Arrête après 'duration' ms écoulées (seulement après au moins 1 frame affiché)
+    // Arrête après 'duration' ms écoulées
     if (frameCount > 1 && elapsed > duration) {
       clearInterval(interval);
       element.innerHTML = originalHTML; // Restaure le HTML original (texte + images)

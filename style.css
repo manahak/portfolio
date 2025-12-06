@@ -11,7 +11,7 @@ body {
 	font-family: 'NotoSans', Arial, sans-serif;
 	font-size: 1.25rem;
 	text-align: center;
-	width: calc(100vw - 380px); /* 380px = largeur du carousel */
+	width: calc(100vw - 300px - 4rem); /* 300px = carousel, 4rem = padding */
 	max-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
@@ -106,7 +106,7 @@ section h2 {
 }
 
 .centered-h2 {
-	width: calc(100vw - 380px); /* 380px = largeur du carousel */
+	width: calc(100vw - 300px - 4rem); /* 300px = carousel, 4rem = padding */
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -219,7 +219,7 @@ table {
 }
 
 main {
-	margin-right: 250px;
+	margin-right: 300px; /* 300px = largeur carousel */
 	padding: 2rem;
 	padding-top: 140px; /* Espace pour le header flottant */
 }
@@ -838,7 +838,7 @@ a {
 @media (max-width: 800px) {
 	/* make the main content use full width (considering the fixed carousel) */
 	.centered-h2, .p1, .article-box, .image-box-3, .image-box-4, .image-box-5 {
-		width: calc(100vw - 340px);
+		width: calc(100vw - 300px - 2rem);
 		margin-left: auto;
 		margin-right: auto;
 	}

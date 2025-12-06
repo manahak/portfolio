@@ -9,7 +9,7 @@ body {
 
 .p1 { /* pour le corps de texte "normal" (en dehors des boites/boutons/collapsible)*/
 	font-family: 'NotoSans', Arial, sans-serif;
-	font-size: 1.3rem;
+	font-size: 1.25rem;
 	text-align: center;
 	width: calc(100vw - 380px); /* 380px = largeur du carousel */
 	max-width: 1000px;

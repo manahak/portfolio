@@ -1,6 +1,7 @@
 body {
 	margin: 0;
-	background-color: #2f2d3d;
+	background: #24244a;
+	background: linear-gradient(90deg,rgba(36, 36, 74, 1) 0%, rgba(47, 45, 61, 1) 64%, rgba(47, 45, 61, 1) 100%);
 	color: #ffffff;
 	scroll-behavior: smooth;
 	font-family: 'NotoSans', Arial, sans-serif;
@@ -403,7 +404,7 @@ section {
 }
 
 .experience-card[data-experience="stage2"] {
-	background-image: url('exp/agen.jpg'); /* Remplacez par l'image appropriée */
+	background-image: url('exp/pilltech.jpg'); /* Remplacez par l'image appropriée */
 }
 
 .experience-card[data-experience="quiestce"] {

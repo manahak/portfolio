@@ -8,6 +8,18 @@ body {
 	font-size: 1.1rem;
 }
 
+/* Background particles canvas (decorative) */
+#bg-particles {
+	position: fixed;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none; /* don't block clicks */
+	z-index: 0; /* sit behind the page content */
+	opacity: 0.35; /* subtle */
+	mix-blend-mode: screen; /* nicer blend with dark background */
+}
+
 .p1 { /* pour le corps de texte "normal" (en dehors des boites/boutons/collapsible)*/
 	font-family: 'NotoSans', Arial, sans-serif;
 	font-size: 1.2rem;
@@ -225,6 +237,8 @@ main {
 	margin-right: 300px; /* 300px = largeur carousel */
 	padding: 2rem;
 	padding-top: 140px; /* Espace pour le header flottant */
+	position: relative; /* ensure main content stacks above the canvas */
+	z-index: 1;
 }
 
 section {
@@ -666,7 +680,7 @@ section {
 	height: 100%;
 	overflow: hidden;
 	border-radius: 10px;
-	background-color: #2f2d3d;
+	background-color: #2f2d3d00;
 }
 
 .carousel-track {

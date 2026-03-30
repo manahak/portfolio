@@ -415,6 +415,10 @@ section {
 	background-image: url('exp/chp_card.png');
 }
 
+.experience-card[data-experience="karastar"] {
+	background-image: url('exp/karastar.png');
+}
+
 /* Overlay semi-transparent par défaut */
 .experience-overlay {
 	position: absolute;

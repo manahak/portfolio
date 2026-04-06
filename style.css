@@ -553,7 +553,7 @@ section {
 
 .btn-ghost {
 	border: 1px solid #7ebded;
-	color: #7ebded;
+	color: #6487a1;
 	padding: 0.6rem 1.4rem;
 	border-radius: 999px;
 	text-decoration: none;
@@ -698,7 +698,7 @@ section {
 }
 
 .carousel-button {
-	background-color: #60929b;
+	background-color: #606b9b;
 	color: #1e1a30;
 	padding: 1.2rem 2rem;
 	border: none;
